@@ -5,12 +5,16 @@ body {
   background: $primary-background;
 }
 
-.main-panel {
-  display: list-item;
+.login-panel {
+  display: flex;
   text-align: -webkit-center;
+  flex-direction: column;
+  align-items: center;
 }
 
-.user-name-input {
+.login-input {
   padding: 5px;
-  margin: 5px;
+  margin: 14px;
+  width: 200px;
+  margin-bottom: 23px;
 }
