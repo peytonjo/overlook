@@ -1,12 +1,15 @@
-class User {
-  constructor(id, name) {
-    this.id = id;
-    this.name = name;
+import Booking from './Booking'
+
+
+export default class User {
+  constructor(data) {
+    this.id = data.id;
+    this.name = data.name;
     this.roomsBooked = [];
     this.loggedIn = false;
   }
 
-  calculateRooms(user) {
+  calculateRoomsTotal(user) {
     let result = this.roomsBooked.reduce((acc, room) => {
       acc += room.cost 
       return acc;
@@ -23,6 +26,13 @@ class User {
     return this.roomsBooked
   }
 
+  availableRooms(date, roomDate, bookingDate){
+    let result = bookingDate.reduce(acc, booking)
+    if (booking.date === date){
+
+    }
+  }
+
 }
 
-export default User;
+//export default User;
