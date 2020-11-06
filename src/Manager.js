@@ -1,7 +1,8 @@
-inhertance 
+inhertance from user class 
 
-class Manager {
-  constructor(){
-    this.loggedIn = false;
+export default class Manager extends User {
+  constructor(userData) {
+    super(userData) 
   }
+  
 }
