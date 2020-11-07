@@ -3,7 +3,6 @@ const spies = require('chai-spies');
 const expect = chai.expect;
 chai.use(spies);
 
-import { expect } from 'chai'
 import User from '../src/User';
 import Booking from '../src/Booking'
 import Room from '../src/Room'
@@ -38,21 +37,21 @@ describe('User', function() {
       "id": "5fwrgu4i7k55hl6sz",
       "userID": 1,
       "date": "2020/04/22",
-      "roomNumber": 15,
+      "roomNumber": 1,
       "roomServiceCharges": []
     })
     booking2 = new Booking ({
       "id": "5fwrgu4i7k55hl6t5",
       "userID": 43,
       "date": "2020/01/24",
-      "roomNumber": 24,
+      "roomNumber": 2,
       "roomServiceCharges": []
     })
     booking3 = new Booking ({
       "id": "5fwrgu4i7k55hl6t6",
       "userID": 1,
       "date": "2020/01/10",
-      "roomNumber": 12,
+      "roomNumber": 3,
       "roomServiceCharges": []
     })
     room1 = new Room ({
@@ -105,6 +104,25 @@ describe('User', function() {
     user1.bookRoom(room1)
     user1.bookRoom(room3)
 
-    expect(user1.calculateRooms()).to.equal(849.54)
+    expect(user1.calculateRoomCosts()).to.equal(849.54)
   })
+
+  it('should be able to find available rooms for a specific date', () => {
+    const rooms = [room1, room2, room3];
+    const bookings = [booking1, booking2, booking3];
+    const date = "2020/01/10";
+
+    const availableRooms = user1.findAvailableRooms(date, rooms, bookings)
+
+    expect(availableRooms).to.deep.equal([room1, room2])
+  });
+
+  it('should be able to filter rooms by roomType', () => {
+    const rooms = [room1, room2, room3];
+    const value = "suite"
+
+    const filteredRooms = user1.filterRooms(value, rooms)
+
+    expect(filteredRooms).to.deep.equal([room2])
+  });
 })

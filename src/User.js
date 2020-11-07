@@ -9,10 +9,11 @@ export default class User {
     this.loggedIn = false;
   }
 
-  calculateRoomsTotal(user) {
-    let result = this.roomsBooked.reduce((acc, room) => {
-      acc += room.cost 
-      return acc;
+  calculateRoomCosts() {
+    const result = this.roomsBooked.reduce((totalRoomCost, room) => {
+      totalRoomCost += room.cost 
+
+      return totalRoomCost;
     }, 0)
 
     return result;
@@ -26,13 +27,23 @@ export default class User {
     return this.roomsBooked
   }
 
-  availableRooms(date, roomDate, bookingDate){
-    let result = bookingDate.reduce(acc, booking)
-    if (booking.date === date){
+  findAvailableRooms(date, rooms, bookings) {
+    const availableBookings = bookings.filter(booking => {
+      return booking.date !== date
+    })
+    
+    const availableRooms = availableBookings.map(booking => {
+      const result = rooms.find(room => room.number === booking.roomNumber)
+    
+      return result
+    })
 
-    }
+    return availableRooms
   }
 
+  filterRooms(value, rooms) {
+    return rooms.filter(room => room.type === value)
+  }
 }
 
-//export default User;
+
