@@ -5,16 +5,40 @@
   </head>
   <body>
     <article class='full-panel'>
-      <h1>Webpack Starter Kit</h1>
+      <h1>Welcome to the (not-so-scenic) Overlook hotel</h1>
       <img src="./images/turing-logo.png" alt="turing logo" height="100px" width="100px">
     </article>
-    <article class="login-panel">
+    <form class="hidden login-form-panel">
       <h1>Login</h1>
-      <!-- <section> -->
-        <input class="login-input" placeholder="Enter Username">
-        <input class="login-input" placeholder="Enter Password">
-        <button type="submit">Login</button>
-      <!-- /</section> -->
+      <label class="hidden login-error-msg-box">
+        <p class="login-error-msg">Invalid username or password</p>
+      </label>
+        <input type="text" name="username" id="username-input" class="username-login-input" placeholder="Enter Username">
+        <input type="password" name="password" id="password-input" class="password-login-input" placeholder="Enter Password">
+        <button type="submit" class="login-btn">Login</button>
+    </form>
+    <article class="dashboard">
+      <section class="hidden user-dashboard">
+        <form class="calendar">
+          <h2>Search for room by date</h2>
+          <section class="input-search">
+            <input class="date-input" placeholder="YYYY/MM/DD">
+            <button class="search-button" id="#date-search-btn">Search</button>
+          </section> 
+        </form>
+        <form class="pick-room">
+          <h2>Search room by type</h2> 
+          <section class="input-search">
+            <input class="date-input" placeholder="suite, single, etc.">
+            <button class="search-button" id="#room-type-search-btn">Search</button>
+          </section>
+        </form>
+      </section>
+      <section class="hidden search-result"></section>
+      <section class="manager-dashboard">
+          <h2>Welcome back, Assistant to the regenal manager</h2>
+          <p id="manager-available-rooms"></p>
+      </section>
     </article>
     <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
   </body>
