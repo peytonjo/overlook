@@ -1,10 +1,9 @@
-import { expect } from 'chai'
 import User from '../src/User';
 import Booking from '../src/Booking'
 import Room from '../src/Room'
 
 
-describe('User', function() {
+describe('Booking', function() {
   let user1;
   let user2;
   let user3;
@@ -73,9 +72,10 @@ describe('User', function() {
       "costPerNight": 491.14,
     })
   })
-  it('should be able to view all rooms availble for a specific date', function() {
-
-  })
+  // it('should be able to view all rooms availble for a specific date', function() {
+  //   let openRooms = availableRooms()
+  //   expect(availableRooms("2020/04/22")).to.equal()
+  // })
 
 // I should be able to select a date for which I’d like to book a room for myself
 // Upon selecting a date, I should be shown a list of room details for only rooms that are available on that date
