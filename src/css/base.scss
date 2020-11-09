@@ -1,20 +1,144 @@
 $primary-background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
-
+$dash-board-background: #fff;
+$shadow: 1px 13px 15px 3px rgba(125,125,125,0.81);
+$button-hover: #ffccff;
+$button-background: #c3c4c7;
 
 body {
   background: $primary-background;
 }
 
-.login-panel {
+.full-panel {
   display: flex;
-  text-align: -webkit-center;
-  flex-direction: column;
+  flex-flow: column;
   align-items: center;
+  margin: 10px;
 }
 
-.login-input {
+.hidden {
+  display: none !important;
+}
+
+.login-form-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: $dash-board-background;
+  margin-right: 140px;
+  margin-left: 140px;
+}
+
+.login-btn {
+  background-color: $button-background;
+  color: black;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 10vw;
+}
+
+.login-btn:hover {
+  background-color: $button-hover
+}
+
+.username-login-input {
   padding: 5px;
   margin: 14px;
   width: 200px;
+  height: 20px;
   margin-bottom: 23px;
 }
+
+.password-login-input {
+  padding: 5px;
+  margin: 14px;
+  width: 200px;
+  height: 20px;
+  margin-bottom: 23px;
+}
+
+.date-input {
+  padding: 5px;
+  margin: 14px;
+  width: 200px;
+  height: 20px;
+  margin-bottom: 23px;
+
+}
+
+.login-error-msg-box {
+  height: 56px;
+  width: 207px;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  background-color: #e58f8f;
+  border: solid #990000 5px;
+}
+
+.login-error-msg {
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    padding: 5px;
+    font-size: 12px;
+    font-weight: bold;
+    color: black;
+}
+
+.user-dashboard {
+  background-color: $dash-board-background;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+}
+
+@mixin calendar {
+  text-align: -webkit-center;
+  width: 50vw;
+  font-family: sans-serif;
+}
+
+.pick-room {
+@include calendar;
+}
+
+.search-result {
+  background-color: #fff;
+  height: 349px;
+  width: 600px;
+  align-self: center;
+  margin: 10px;
+}
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-content: center;
+}
+
+.manager-dashboard {
+  display: flex;
+  align-self: center;
+  background-color: #fff;
+  width: 600px;
+  flex-direction: column;
+  height: 350px;
+  place-items: center;
+}
+
+
+
+.input-search {
+  height: 28px;
+  margin-top: 14px;
+  display: table-row-group;
+}
+
+.search-button {
+  height: 33px;
+}
+
