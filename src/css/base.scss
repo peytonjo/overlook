@@ -1,7 +1,20 @@
-/* This is an example of using Sass, otherwise plain CSS works too*/
 $primary-background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
-;
+
 
 body {
   background: $primary-background;
+}
+
+.login-panel {
+  display: flex;
+  text-align: -webkit-center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-input {
+  padding: 5px;
+  margin: 14px;
+  width: 200px;
+  margin-bottom: 23px;
 }
