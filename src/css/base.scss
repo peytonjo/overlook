@@ -3,6 +3,7 @@ $dash-board-background: #fff;
 $shadow: 1px 13px 15px 3px rgba(125,125,125,0.81);
 $button-hover: #ffccff;
 $button-background: #c3c4c7;
+$text-color: black;
 
 body {
   background: $primary-background;
@@ -19,6 +20,8 @@ body {
   display: none !important;
 }
 
+//---------login--------------
+
 .login-form-panel {
   display: flex;
   flex-direction: column;
@@ -30,7 +33,7 @@ body {
 
 .login-btn {
   background-color: $button-background;
-  color: black;
+  color: $text-color;
   padding: 14px 20px;
   margin: 8px 0;
   border: none;
@@ -58,15 +61,6 @@ body {
   margin-bottom: 23px;
 }
 
-.date-input {
-  padding: 5px;
-  margin: 14px;
-  width: 200px;
-  height: 20px;
-  margin-bottom: 23px;
-
-}
-
 .login-error-msg-box {
   height: 56px;
   width: 207px;
@@ -84,53 +78,58 @@ body {
     padding: 5px;
     font-size: 12px;
     font-weight: bold;
-    color: black;
+    color: $text-color;
 }
 
-.user-dashboard {
-  background-color: $dash-board-background;
+//--------------user dashboard-----------
+
+
+
+@mixin user-dashboard {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  place-content: space-around;
+}
+
+.dashboard {
+  @include user-dashboard;
   align-content: center;
 }
 
-@mixin calendar {
+.calendar {
+  background-color: $dash-board-background;
   text-align: -webkit-center;
   width: 50vw;
   font-family: sans-serif;
 }
 
-.pick-room {
-@include calendar;
+.date-input {
+  padding: 5px;
+  margin: 14px;
+  width: 200px;
+  height: 20px;
+  margin-bottom: 23px;
+
 }
 
 .search-result {
-  background-color: #fff;
+  display: flex;
+  margin: 0px;
+  background-color: $dash-board-background;
   height: 349px;
   width: 600px;
   align-self: center;
-  margin: 10px;
-}
-
-.dashboard {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-content: center;
+  width: 100%;
 }
 
 .manager-dashboard {
   display: flex;
   align-self: center;
-  background-color: #fff;
+  background-color: $dash-board-background;
   width: 600px;
   flex-direction: column;
   height: 350px;
   place-items: center;
 }
-
-
 
 .input-search {
   height: 28px;
@@ -142,3 +141,15 @@ body {
   height: 33px;
 }
 
+.user-room-search {
+  background-color: $dash-board-background;
+  display: flex;
+  justify-content: space-around;
+}
+
+.user-room-info {
+  background-color: $dash-board-background;
+  margin: 5px;
+  text-align: -webkit-center;
+  padding: 5px;
+}

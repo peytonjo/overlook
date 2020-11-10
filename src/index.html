@@ -19,21 +19,7 @@
     </form>
     <article class="dashboard">
       <section class="hidden user-dashboard">
-        <form class="calendar">
-          <h2>Search for room by date</h2>
-          <section class="input-search">
-            <input class="date-input" placeholder="YYYY/MM/DD">
-            <button class="search-button" id="#date-search-btn">Search</button>
-          </section> 
-        </form>
-        <form class="pick-room">
-          <h2>Search room by type</h2> 
-          <section class="input-search">
-            <input class="date-input" placeholder="suite, single, etc.">
-            <button class="search-button" id="#room-type-search-btn">Search</button>
-          </section>
-        </form>
-        <section>
+        <section class="user-room-info">
           <article>
             <p>you have currently spent on rooms</p>            
           </article>
@@ -41,8 +27,24 @@
             <p>past and upcoming bookings: </p>            
           </article>
         </section>
+        <section class="user-room-search">
+          <form class="calendar">
+            <h2>Search for room by date</h2>
+            <section class="input-search">
+              <input class="date-input" placeholder="YYYY/MM/DD">
+              <button class="search-button" id="#date-search-btn">Search</button>
+            </section> 
+          </form>
+          <form class="calendar">
+            <h2>Search room by type</h2> 
+            <section class="input-search">
+              <input class="date-input" placeholder="suite, single, etc.">
+              <button class="search-button" id="#room-type-search-btn">Search</button>
+            </section>
+          </form>
+        </section>
+        <section class="search-result"></section>
       </section>
-      <section class="hidden search-result"></section>
       <section class="hidden manager-dashboard">
           <h2>Welcome back, Assistant to the regenal manager</h2>
           <p id="manager-available-rooms"></p>
