@@ -3,15 +3,19 @@
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 // import './images/turing-logo.png'
 
+//import './images/hotel-room.webp'
 import { getUsers, getRooms, getBookings } from './apiCalls';
 import './css/base.scss';
 import { 
   loginBtn, 
   loginForm, 
+  makeNewBookingBtn, 
   managerDashboard, 
   userDashboard, 
   userName, 
-  userPassword } from './domElements';
+  userPassword, 
+  usersInfoPage,
+  roomSearch} from './domElements';
 import Manager from './manager';
 
 
@@ -34,7 +38,13 @@ const displayManagerDashboard = () => {
 
 const displayUserDashboard = () => {
   userDashboard.classList.remove('hidden')
+  usersInfoPage.classList.remove('hidden')
   loginForm.classList.add('hidden')
+}
+
+const makeNewBookingView = () => {
+  usersInfoPage.classList.add('hidden')
+  roomSearch.classList.remove('hidden')
 }
 
 //------------------------- login functionality -------------------
@@ -70,6 +80,12 @@ loginBtn.addEventListener('click', (event) => {
   
   validateLoginInputs()
 })
+
+makeNewBookingBtn.addEventListener('click', (event) => {
+  makeNewBookingView()
+})
+
+//inner.HTML
 
 
 // roomTypeBtn.addEventListener('click', () => {
@@ -108,3 +124,18 @@ loginBtn.addEventListener('click', (event) => {
 //   })
 // })
 
+
+//inner.HTML for the room results when user enters dates 
+/* <section class='search-result-card'>
+    <div>
+      <img class='result_image' src='./images/hotel-exterior.jpg'>
+    </div>
+    <article class='result_text-wrapper'>
+      <h2>${room type}</h2>
+      <p>${room summary}</p>
+      <p>$145</p>
+      <p>per night<br>excluding taxes and fees</p>
+    </article>
+      <div><p>BOOK</p></div>
+   </section>
+  */  
