@@ -1,4 +1,4 @@
-import Booking from './classes/Booking'
+import Booking from './Booking'
 
 
 export default class User {
