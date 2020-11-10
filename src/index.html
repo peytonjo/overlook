@@ -8,14 +8,14 @@
       <h1>Welcome to the (not-so-scenic) Overlook hotel</h1>
       <img src="./images/turing-logo.png" alt="turing logo" height="100px" width="100px">
     </article>
-    <form class="hidden login-form-panel">
+    <form class="login-form-panel">
       <h1>Login</h1>
       <label class="hidden login-error-msg-box">
         <p class="login-error-msg">Invalid username or password</p>
       </label>
-        <input type="text" name="username" id="username-input" class="username-login-input" placeholder="Enter Username">
-        <input type="password" name="password" id="password-input" class="password-login-input" placeholder="Enter Password">
-        <button type="submit" class="login-btn">Login</button>
+        <input type="text" name="username" class="username-login-input" placeholder="Enter Username" aria-label=“username”>
+        <input type="password" name="password" class="password-login-input" placeholder="Enter Password" aria-label=“password”>
+        <button type="submit" class="login-btn" aria-label=“submit”>Login</button>
     </form>
     <article class="dashboard">
       <section class="hidden user-dashboard">
@@ -35,7 +35,7 @@
         </form>
       </section>
       <section class="hidden search-result"></section>
-      <section class="manager-dashboard">
+      <section class="hidden manager-dashboard">
           <h2>Welcome back, Assistant to the regenal manager</h2>
           <p id="manager-available-rooms"></p>
       </section>
