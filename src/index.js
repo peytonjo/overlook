@@ -16,7 +16,7 @@ import {
   userPassword, 
   usersInfoPage,
   roomSearch} from './domElements';
-import Manager from './manager';
+import Manager from './classes/Manager';
 
 
  //-----------------------------populate storage-----------------------

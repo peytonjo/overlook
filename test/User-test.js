@@ -3,12 +3,9 @@ const spies = require('chai-spies');
 const expect = chai.expect;
 chai.use(spies);
 
-import User from '../src/User';
-import Booking from '../src/Booking'
-import Room from '../src/Room'
-
-
-
+import User from '../src/classes/User';
+import Booking from '../src/classes/Booking'
+import Room from '../src/classes/Room'
 
 describe('User', function() {
   let user1;
