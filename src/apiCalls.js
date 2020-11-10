@@ -6,8 +6,7 @@ export const getData = (url) => {
     }).then(data => {
       return data
     });
- 
-
+    
     return data;
   } catch(error) {
     throw new Error('Failed to fetch: ' + error)
