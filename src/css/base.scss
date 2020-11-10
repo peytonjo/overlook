@@ -1,3 +1,4 @@
+
 $primary-background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
 $dash-board-background: #fff;
 $shadow: 1px 13px 15px 3px rgba(125,125,125,0.81);
@@ -5,10 +6,20 @@ $button-hover: #ffccff;
 $button-background: #c3c4c7;
 $text-color: black;
 
+
 body {
-  background: $primary-background;
+  background-image: url('../images/bg-image.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-color: #464646;
 }
 
+main {
+  display: flex;
+  justify-content: center;
+}
 .full-panel {
   display: flex;
   flex-flow: column;
@@ -27,25 +38,35 @@ body {
   flex-direction: column;
   align-items: center;
   background-color: $dash-board-background;
-  margin-right: 140px;
-  margin-left: 140px;
+  margin-top: 183px;
+  padding-left: 130px;
+  padding-right: 130px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .login-btn {
   background-color: $button-background;
-  color: $text-color;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
+  background-color: #c3c4c7;
+  height: 46px;
+  border: 0px;
+  border-radius: 1px;
+  padding: 16px;
   cursor: pointer;
   width: 10vw;
 }
 
 .login-btn:hover {
-  background-color: $button-hover
+  background-color: $text-color;
+  color: $dash-board-background;
+  height: 46px;
+  border: 0px;
+  border-radius: 1px;
+  padding: 16px;
 }
 
 .username-login-input {
+  background-color: $dash-board-background;
   padding: 5px;
   margin: 14px;
   width: 200px;
@@ -84,7 +105,6 @@ body {
 //--------------user dashboard-----------
 
 
-
 @mixin user-dashboard {
   display: flex;
   place-content: space-around;
@@ -93,6 +113,8 @@ body {
 .dashboard {
   @include user-dashboard;
   align-content: center;
+  width: 100px;
+
 }
 
 .calendar {
@@ -100,6 +122,10 @@ body {
   text-align: -webkit-center;
   width: 50vw;
   font-family: sans-serif;
+}
+
+.calendar h2 {
+  margin-bottom: 1px;
 }
 
 .date-input {
@@ -121,15 +147,6 @@ body {
   width: 100%;
 }
 
-.manager-dashboard {
-  display: flex;
-  align-self: center;
-  background-color: $dash-board-background;
-  width: 600px;
-  flex-direction: column;
-  height: 350px;
-  place-items: center;
-}
 
 .input-search {
   height: 28px;
@@ -141,6 +158,12 @@ body {
   height: 33px;
 }
 
+.room-search {
+  margin-left: 61px;
+  margin-right: 20px;
+  margin-top: 100px;
+}
+
 .user-room-search {
   background-color: $dash-board-background;
   display: flex;
@@ -149,7 +172,78 @@ body {
 
 .user-room-info {
   background-color: $dash-board-background;
-  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   text-align: -webkit-center;
-  padding: 5px;
+  width: 600px;
+  margin: 40px;
+  margin-top: 100px;
+  padding: 20px;
+}
+
+.book-new-btn {
+  background-color: $button-background;
+  background-color: #c3c4c7;
+  height: 46px;
+  border: 0px;
+  border-radius: 1px;
+  padding: 16px;
+}
+
+.book-new-btn:hover {
+  background-color: $text-color;
+  color: $dash-board-background;
+  height: 46px;
+  border: 0px;
+  border-radius: 1px;
+  padding: 16px;
+}
+
+.past-future-bookings
+
+//------------------------manager dashboard-----
+
+.manager-dashboard {
+  display: flex;
+  align-self: center;
+  background-color: $dash-board-background;
+  width: 600px;
+  flex-direction: column;
+  height: 350px;
+  place-items: center;
+}
+
+.past-future-bookings {
+  width: 600px;
+  margin: 40px;
+  margin-top: 100px;
+  padding: 20px;
+  background-color: #fff;
+  opacity: 0.9;
+}
+
+.booking-record {
+  background-color: #c3c4c7;
+  opacity: 0.9;
+  margin: 10px 0 0;
+  // width: 100%;
+  height: 70px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  place-content: space-between;
+}
+
+.booking-record h2 {
+  margin-left: 10px;
+}
+
+.room-cost {
+  background-color: green;
+  margin: 10px;
+  width: 54px;
+  height: 50px;
+  border-radius: 46px;
+  text-align: center;
 }
