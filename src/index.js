@@ -1,5 +1,7 @@
 // This is the JavaScript entry file - your code begins here
 // Do not delete or rename this file ********
+// An example of how you tell webpack to use an image (also need to link to it in the index.html)
+// import './images/turing-logo.png'
 
 import { getUsers, getRooms, getBookings } from './apiCalls';
 import './css/base.scss';
@@ -13,13 +15,7 @@ import {
 import Manager from './manager';
 
 
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
-// import './images/turing-logo.png'
-
  //-----------------------------populate storage-----------------------
-
-
-
 
 const populateStorage = () => {
   getUsers().then(data => localStorage.setItem('users', JSON.stringify(data)))
@@ -42,6 +38,7 @@ const displayUserDashboard = () => {
 }
 
 //------------------------- login functionality -------------------
+
 const validateLoginInputs = () => {
   if (userName.value === 'manager' && userPassword.value === 'overlook2020') {
     const manager = new Manager({id: 0, name: 'admin'})
@@ -63,9 +60,7 @@ const validateLoginInputs = () => {
 const findUser = (id) => {
   const usersData = JSON.parse(localStorage.getItem('users'))  
 
-  return usersData.find(user => {
-    return user.id === parseInt(id)
-  })
+  return usersData.find(user => user.id === parseInt(id))
 }
 
 
