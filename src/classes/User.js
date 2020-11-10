@@ -1,3 +1,4 @@
+import { getBookings } from '../apiCalls';
 import Booking from './Booking'
 
 
@@ -24,11 +25,12 @@ export default class User {
   }
 
   getBookedHistory() {
-    const bookings = JSON.parse(localStorage.getItem('bookings'))
+    const bookings = getBookings()
+
     const usersBookings = bookings.filter(booking => {
       return booking.userID === this.id
     })
-    
+
     this.roomsBooked = usersBookings
 
     return this.roomsBooked

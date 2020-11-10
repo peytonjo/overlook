@@ -200,7 +200,13 @@ main {
   padding: 16px;
 }
 
-.past-future-bookings
+.future {
+  background-color: $button-hover;
+}
+
+.past {
+  background-color: $button-background;
+}
 
 //------------------------manager dashboard-----
 
@@ -224,7 +230,6 @@ main {
 }
 
 .booking-record {
-  background-color: #c3c4c7;
   opacity: 0.9;
   margin: 10px 0 0;
   height: 70px;

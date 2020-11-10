@@ -1,6 +1,7 @@
 import Booking from "./classes/Booking";
 import Room from "./classes/Room";
 import User from "./classes/User";
+import { roomSearch } from "./domElements";
 
 export const getData = (url) => {
   try {
@@ -41,31 +42,35 @@ export const postData = async (url, data) => {
 }
 
 export const getUsers = () => {
-  return getData('https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users')
-    .then((usersData) => {
-      return usersData.users.map((data) => {
-        return new User(data);
-      })
-    })
-    .catch(error => console.log(error));
+  const usersData = JSON.parse(localStorage.getItem('users'))
+  
+  return usersData.users.map((data) => new User(data))
 }
 
 export const getRooms = () => {
-  return getData('https://fe-apps.herokuapp.com/api/v1/overlook/1904/rooms/rooms')
-    .then((roomsData) => {
-      return roomsData.rooms.map((data) => {
-        return new Room(data);
-      })
-    })
-    .catch(error => console.log(error));
+  const roomsData = JSON.parse(localStorage.getItem('rooms'))
+
+  return roomsData.rooms.map(room => new Room(room))
+
+  // return getData('https://fe-apps.herokuapp.com/api/v1/overlook/1904/rooms/rooms')
+  //   .then((roomsData) => {
+  //     return roomsData.rooms.map((data) => {
+  //       return new Room(data);
+  //     })
+  //   })
+  //   .catch(error => console.log(error));
 }
 
 export const getBookings = () => {
-  return getData('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings')
-    .then((bookingsData) => {
-      return bookingsData.bookings.map((data) => {
-        return new Booking(data);
-      })
-    })
-    .catch(error => console.log(error));
+  const bookingsData = JSON.parse(localStorage.getItem('bookings'))
+
+  return bookingsData.bookings.map(booking => new Booking(booking))
+
+  // return getData('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings')
+  //   .then((bookingsData) => {
+  //     return bookingsData.bookings.map((data) => {
+  //       return new Booking(data);
+  //     })
+  //   })
+  //   .catch(error => console.log(error));
 }

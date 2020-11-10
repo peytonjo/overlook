@@ -4,7 +4,7 @@
 // import './images/turing-logo.png'
 
 //import './images/hotel-room.webp'
-import { getUsers, getRooms, getBookings } from './apiCalls';
+import { getUsers, getRooms, getBookings, getData } from './apiCalls';
 import './css/base.scss';
 import { 
   loginBtn, 
@@ -15,16 +15,21 @@ import {
   userName, 
   userPassword, 
   usersInfoPage,
-  roomSearch} from './domElements';
+  roomSearch,
+  pastFutureBookings,
+  bookingContainer} from './domElements';
 import Manager from './classes/Manager';
-
 
  //-----------------------------populate storage-----------------------
 
 const populateStorage = () => {
-  getUsers().then(data => localStorage.setItem('users', JSON.stringify(data)))
-  getRooms().then(data => localStorage.setItem('rooms', JSON.stringify(data)))
-  getBookings().then(data => localStorage.setItem('bookings', JSON.stringify(data)))
+  const usersURL = 'https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users';
+  const roomsURL = 'https://fe-apps.herokuapp.com/api/v1/overlook/1904/rooms/rooms';
+  const bookingsURL = 'https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings';
+
+  getData(usersURL).then(data => localStorage.setItem('users', JSON.stringify(data)))
+  getData(roomsURL).then(data => localStorage.setItem('rooms', JSON.stringify(data)))
+  getData(bookingsURL).then(data => localStorage.setItem('bookings', JSON.stringify(data)))
 }
 
 populateStorage()
@@ -39,11 +44,13 @@ const displayManagerDashboard = () => {
 const displayUserDashboard = () => {
   userDashboard.classList.remove('hidden')
   usersInfoPage.classList.remove('hidden')
+  pastFutureBookings.classList.remove('hidden')
   loginForm.classList.add('hidden')
 }
 
 const makeNewBookingView = () => {
   usersInfoPage.classList.add('hidden')
+  pastFutureBookings.classList.add('hidden')
   roomSearch.classList.remove('hidden')
 }
 
@@ -53,24 +60,29 @@ const validateLoginInputs = () => {
   if (userName.value === 'manager' && userPassword.value === 'overlook2020') {
     const manager = new Manager({id: 0, name: 'admin'})
     manager.loggedIn = true
-    localStorage.setItem('currentUser', JSON.stringify(manager))
+    localStorage.setItem('currentUserID', JSON.stringify(manager.id))
     displayManagerDashboard()
   } else {
     const loginPrefix = userName.value.split('').slice(0,8).join('')
     const id = userName.value.split('').slice(8).join('')
-    const matchingUser = findUser(id)
-    if (matchingUser && loginPrefix === 'customer' && userPassword.value === 'overlook2020') {
-      matchingUser.loggedIn = true
-      localStorage.setItem('currentUser', JSON.stringify(matchingUser))
-      displayUserDashboard()
+    const currentUser = findUser(id)
+    if (currentUser && loginPrefix === 'customer' && userPassword.value === 'overlook2020') {
+      loginUser(currentUser)
     }
   }
 }
 
 const findUser = (id) => {
-  const usersData = JSON.parse(localStorage.getItem('users'))  
+  const users = getUsers()
 
-  return usersData.find(user => user.id === parseInt(id))
+  return users.find(user => user.id === parseInt(id))
+}
+
+const loginUser = (currentUser) => {
+  currentUser.loggedIn = true
+  displayUserDashboard()
+  currentUser.getBookedHistory()
+  populateBookings(currentUser)
 }
 
 
@@ -85,9 +97,28 @@ makeNewBookingBtn.addEventListener('click', (event) => {
   makeNewBookingView()
 })
 
-//inner.HTML
+// -----------------------------inner.HTML---------------------------
 
-
+const populateBookings = (currentUser) => {
+  const rooms = getRooms()
+  currentUser.roomsBooked
+    .sort((a,b) => new Date(b.date) - new Date(a.date))
+    .forEach(bookedRoom => {
+      const room = rooms.find(room => room.number === bookedRoom.roomNumber)
+      console.log(room)
+      const moment = (new Date(bookedRoom.date) > Date.now()) ? 'future' : 'past';
+      bookingContainer.innerHTML += 
+      `
+      <div class="booking-record ${moment}"> 
+        <h2>room type: ${room.type}</h2>
+        <p>Date: ${bookedRoom.date}
+        <div class="room-cost">
+          <p>$${room.cost}</p>
+        </div>
+      </div>
+      `
+    })
+}
 // roomTypeBtn.addEventListener('click', () => {
 //   const filteredRoomsType = user.filterRooms(roomTypeInput.type)
 //   const result = filteredRoomsType.forEach((filteredRoom) => {

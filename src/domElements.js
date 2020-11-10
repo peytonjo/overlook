@@ -10,6 +10,8 @@ export const managerDashboard = document.querySelector('.manager-dashboard')
 // user dashboard selectors
 export const usersInfoPage = document.querySelector('.user-room-info')
 export const userDashboard = document.querySelector('.user-dashboard')
+export const pastFutureBookings = document.querySelector('.past-future-bookings')
+export const bookingContainer = document.querySelector('.booking-container')
 export const roomSearch = document.querySelector('.room-search')
 export const makeNewBookingBtn = document.querySelector('.book-new-btn')
 export const roomTypeBtn = document.getElementById('room-type-search-btn');
