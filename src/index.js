@@ -1,13 +1,15 @@
 // This is the JavaScript entry file - your code begins here
 // Do not delete or rename this file ********
 
-import { getData } from './apiCalls';
+import { getUsers, getRooms, getBookings } from './apiCalls';
 import './css/base.scss';
-import './classes/Room'
-import './classes/User'
-import './domElements'
-import { loginBtn, loginForm, managerDashboard, userDashboard, userName, userPassword } from './domElements';
-import User from './classes/User';
+import { 
+  loginBtn, 
+  loginForm, 
+  managerDashboard, 
+  userDashboard, 
+  userName, 
+  userPassword } from './domElements';
 import Manager from './manager';
 
 
@@ -16,19 +18,13 @@ import Manager from './manager';
 
  //-----------------------------populate storage-----------------------
 
-const getUsers = () => {
-  return getData('https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users')
-    .then((usersData) => {
-      return usersData.users.map((data) => {
-        return new User(data);
-      })
-    })
-    .catch(error => console.log(error));
-}
+
 
 
 const populateStorage = () => {
   getUsers().then(data => localStorage.setItem('users', JSON.stringify(data)))
+  getRooms().then(data => localStorage.setItem('rooms', JSON.stringify(data)))
+  getBookings().then(data => localStorage.setItem('bookings', JSON.stringify(data)))
 }
 
 populateStorage()
@@ -38,7 +34,6 @@ populateStorage()
 const displayManagerDashboard = () => {
   managerDashboard.classList.remove('hidden')
   loginForm.classList.add('hidden')
-  console.log('currentUser', localStorage.getItem('currentUser'))
 }
 
 const displayUserDashboard = () => {
