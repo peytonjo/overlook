@@ -88,13 +88,14 @@ describe('User', function() {
     expect(user1.roomsBooked[0]).to.equal(room1)
   })
 
-  it('should find the users rooms', function() {
-    user1.bookRoom(room1)
-    user1.bookRoom(room3)
+  it('should find the users bookings', function() {
+    global.localStorage = {};
+    chai.spy.on(localStorage, ['setItem', 'getItem'], () => JSON.stringify([booking1, booking2, booking3]));
 
     const rooms = user1.getBookedHistory()
 
-    expect(rooms).to.deep.equal([room1, room3])
+    expect(rooms).to.deep.equal([booking1, booking3])
+    expect(user1.roomsBooked).to.deep.equal([booking1, booking3])
   });
 
   it('should calculate total spent on rooms', function() {

@@ -24,6 +24,13 @@ export default class User {
   }
 
   getBookedHistory() {
+    const bookings = JSON.parse(localStorage.getItem('bookings'))
+    const usersBookings = bookings.filter(booking => {
+      return booking.userID === this.id
+    })
+    
+    this.roomsBooked = usersBookings
+
     return this.roomsBooked
   }
 
