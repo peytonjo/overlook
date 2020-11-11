@@ -1,4 +1,3 @@
-
 // login form and error msg
 export const loginForm = document.querySelector(".login-form-panel");
 export const loginBtn = document.querySelector(".login-btn");

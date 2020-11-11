@@ -5,6 +5,9 @@ $shadow: 1px 13px 15px 3px rgba(125,125,125,0.81);
 $button-hover: #ffccff;
 $button-background: #c3c4c7;
 $text-color: black;
+$future-bg-color: #bdc1c9;
+$past-bg-color: #707173;
+
 
 
 body {
@@ -20,6 +23,7 @@ main {
   display: flex;
   justify-content: center;
 }
+
 .full-panel {
   display: flex;
   flex-flow: column;
@@ -114,7 +118,6 @@ main {
   @include user-dashboard;
   align-content: center;
   width: 100px;
-
 }
 
 .calendar {
@@ -134,7 +137,6 @@ main {
   width: 200px;
   height: 20px;
   margin-bottom: 23px;
-
 }
 
 .search-result {
@@ -180,6 +182,7 @@ main {
   margin: 40px;
   margin-top: 100px;
   padding: 20px;
+  opacity: 0.9;
 }
 
 .book-new-btn {
@@ -201,11 +204,12 @@ main {
 }
 
 .future {
-  background-color: $button-hover;
+  background-color: $future-bg-color;
 }
 
 .past {
-  background-color: $button-background;
+  background-color: $past-bg-color;
+  color: $dash-board-background
 }
 
 //------------------------manager dashboard-----
@@ -237,6 +241,7 @@ main {
   display: flex;
   flex-direction: row;
   place-content: space-between;
+  align-items: center;
 }
 
 .booking-record h2 {
@@ -244,10 +249,15 @@ main {
 }
 
 .room-cost {
-  background-color: green;
+  background-color: #8efa9d;
   margin: 10px;
   width: 54px;
   height: 50px;
   border-radius: 46px;
   text-align: center;
+  color: $text-color !important;
+}
+
+.room-type {
+  margin-left: 10px;
 }

@@ -23,6 +23,7 @@ import Manager from './classes/Manager';
 
  //-----------------------------populate storage-----------------------
 
+
 const populateStorage = () => {
   const usersURL = 'https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users';
   const roomsURL = 'https://fe-apps.herokuapp.com/api/v1/overlook/1904/rooms/rooms';
@@ -116,7 +117,7 @@ const populateBookings = (currentUser) => {
       bookingContainer.innerHTML += 
       `
       <div class="booking-record ${moment}"> 
-        <h2>room type: ${room.type}</h2>
+        <p class="room-type">room type: ${room.type}</p>
         <p>Date: ${bookedRoom.date}
         <div class="room-cost">
           <p>$${room.cost}</p>
@@ -126,23 +127,23 @@ const populateBookings = (currentUser) => {
     })
 }
 
-// roomTypeBtn.addEventListener('click', () => {
-//   const filteredRoomsType = user.filterRooms(roomTypeInput.type)
-//   const result = filteredRoomsType.forEach((filteredRoom) => {
-//     displayFilteredRooms.innerHTML = ''
-//     return displayFilteredRooms.innerHTML += 
-//     `<section class="search-result"> 
-//       <div class="type-results">
-//         "number": ${room.number},
-//         "roomType": ${room.type},
-//         "bidet": true
-//         "bedSize": ${room.bedSize},
-//         "numBeds": ${room.numBeds},
-//         "costPerNight": ${room.cost}
-//       </div>
-//     </section>`
-//   })
-// })
+roomTypeBtn.addEventListener('click', () => {
+  const filteredRoomsType = user.filterRooms(roomTypeInput.type)
+  const result = filteredRoomsType.forEach((filteredRoom) => {
+    displayFilteredRooms.innerHTML = ''
+    return displayFilteredRooms.innerHTML += 
+    `<section class="search-result"> 
+      <div class="type-results">
+        "number": ${room.number},
+        "roomType": ${room.type},
+        "bidet": true
+        "bedSize": ${room.bedSize},
+        "numBeds": ${room.numBeds},
+        "costPerNight": ${room.cost}
+      </div>
+    </section>`
+  })
+})
 
 // roomDateBtn.addEventListener('click', () => {
 //   const filteredRoomsDate = user.findAvailableRooms(roomDateInput.date)
