@@ -9,49 +9,45 @@
 * Read the README.
 * In the terminal, run command "open index.html" to interact with the app.
 
-### Iteration 1 - Comp setup
-Objective - A fully functioning  login page with functionality to support a user entering a Username and Password. A manager should be able to login with a unique username and password.
+### Iteration 1 - Login 
+Objective - A fully functioning login page with functionality and methods to support a user entering a Username and Password. A manager should be able to login with a unique username and password and see a unique dashboard 
 
-![](https://media.giphy.com/media/XOpMX19S5BgFuLAyd1/giphy.gif)
-
-
-### Iteration 1 - Activity Class
-Objectives
-1. Create an activity class with properties and methods.
-
-### Iteration 2 - Form Functionality
-Objectives
-1. Build active button state
-2. Create functionality for input fields
-3. Create functionality for start button
-4. When start is selected new instantiation of activity class is made
-
-![](https://media.giphy.com/media/GIdZEdeHVY1vr660G6/giphy.gif)
+### Iteration 2 - Dashboard
+Objectives:
+- Manager should have dashboard page that shows:
+  1. Total Rooms Available for today’s date
+  2. Total revenue for today’s date
+  3. Percentage of rooms occupied for today’s date
+  
+- A user should see a dashboard page that shows:
+  1. Any room bookings they have made (past or present/upcoming)
+  2. The total amount they have spent on rooms
 
 
-### Iteration 3 - Build an MVP
-Objectives
-1. User can start the timer by selecting start
-2. The user can see the timer counting down by seconds
-3. When the timer completes an alert with appear 
 
-![](https://media.giphy.com/media/tL4nH6uMQGJb7PQ7YC/giphy.gif)
+### Iteration 3 - Customer Interaction
+Objectives:
+ - User should be able to select a date for which they would like to book a room for themselves
+ - Upon selecting a date, User should be shown a list of room details for only rooms that are available on that date
+ - User should be able to filter the list of available rooms by their roomType property
+ - User should be able to select a room for booking
+ - In the event that no rooms are available for the date/roomType selected, display a message fiercely apologizing to the user and asking them to adjust their      room search
 
-### Iteration 4 - logging past activity
+
+
+### Iteration 4 - Manager Interaction
 ObjectiveS
 1. When the timer completes the alert no longer appears 
 2. When the alert dissapears a congratulatory message appears 
 3. When the user clicks 'log activity' the information is displayed in a card 
 4. Cards are displayed in past activity section
 
-![](https://media.giphy.com/media/SsqkaWGpaGUq7wcFqo/giphy.gif)
+
 
 ### Iteration 5
 Objective
 1. When page is refreshed the past activity cards are still displayed
 
-![](https://media.giphy.com/media/7aJA1VyitEhf6ZQEqH/giphy.gif)
-![](https://media.giphy.com/media/YeYpy3GVqwukjhM4rm/giphy.gif)
 
 
 
