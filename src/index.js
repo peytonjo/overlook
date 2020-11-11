@@ -23,7 +23,8 @@ import {
   roomTypeInput,
   roomDateBtn,
   dateInput,
-  resultContainer} from './domElements';
+  resultContainer,
+  loginErrorMsg} from './domElements';
 import Manager from './classes/Manager';
 import DataManager from './classes/DataManager';
 
@@ -65,18 +66,18 @@ const makeNewBookingView = () => {
 //------------------------- login functionality -------------------
 
 const validateLoginInputs = () => {
-  if (userName.value === 'manager' && userPassword.value === 'overlook2020') {
+  const loginPrefix = userName.value.split('').slice(0,8).join('')
+  const id = userName.value.split('').slice(8).join('')
+  const currentUser = findUser(id)
+  if (currentUser && loginPrefix === 'customer' && userPassword.value === 'overlook2020') {
+      loginUser(currentUser)
+  } else if (userName.value === 'manager' && userPassword.value === 'overlook2020') {
     const manager = new Manager({id: 0, name: 'admin'})
     manager.loggedIn = true
     localStorage.setItem('currentUserID', JSON.stringify(manager.id))
     displayManagerDashboard()
   } else {
-    const loginPrefix = userName.value.split('').slice(0,8).join('')
-    const id = userName.value.split('').slice(8).join('')
-    const currentUser = findUser(id)
-    if (currentUser && loginPrefix === 'customer' && userPassword.value === 'overlook2020') {
-      loginUser(currentUser)
-    }
+    loginErrorMsg.classList.remove('hidden')
   }
 }
 
