@@ -22,7 +22,7 @@ import {
   roomTypeBtn,
   roomTypeInput,
   roomDateBtn,
-  roomDateInput,
+  dateInput,
   resultContainer} from './domElements';
 import Manager from './classes/Manager';
 import DataManager from './classes/DataManager';
@@ -138,9 +138,7 @@ roomTypeBtn.addEventListener('click', (event) => {
   resultContainer.classList.remove('hidden')
   const rooms = getRooms()
   const dataManager = new DataManager()
-  console.log(roomTypeInput)
   const filteredRooms = dataManager.filterRooms(roomTypeInput.value, rooms)
-  console.log(filteredRooms)
   filteredRooms.forEach((filteredRoom) => {
     const hasBidet = filteredRoom.bidet ? 'offers' : 'does not have'
     resultContainer.innerHTML += 
@@ -156,36 +154,27 @@ roomTypeBtn.addEventListener('click', (event) => {
   })
 })
 
-// roomDateBtn.addEventListener('click', () => {
-//   const filteredRoomsDate = user.findAvailableRooms(roomDateInput.date)
-//   const result = filteredRoomsDate.forEach((filteredRoom) => {
-//     displayFilteredRooms.innerHTML = ''
-//     return displayFilteredRooms.innerHTML += 
-//     `<section class="search-result">
-//       <div class="date-results">
-//         "number": ${room.number},
-//         "roomType": ${room.type},
-//         "bidet": true
-//         "bedSize": ${room.bedSize},
-//         "numBeds": ${room.numBeds},
-//         "costPerNight": ${room.cost}
-//       </div>
-//      </section>`
-//   })
-// })
+roomDateBtn.addEventListener('click', (event) => {
+  event.preventDefault()
+  resultContainer.classList.remove('hidden')
+  const rooms = getRooms()
+  const bookings = getBookings()
+  const dataManager = new DataManager()
+  let filteredRooms = dataManager.findAvailableRooms(dateInput.value, rooms, bookings)
+  const shortResult = filteredRooms.splice(0,20)
+  shortResult.forEach((filteredRoom) => {
+    const hasBidet = filteredRoom.bidet ? 'offers' : 'does not have'
+    resultContainer.innerHTML += 
+    `
+      <section class="result-card"> 
+        <div class="type-results">
+          <p>One ${filteredRoom.type} with ${filteredRoom.numBeds} ${filteredRoom.bedSize} sized beds. cost-per-night: ${filteredRoom.cost}<p>
+          <p>(This room ${hasBidet} a bidet)<p>
+        </div>
+        <button class="login-btn book-btn"> Book now! </button>
+      </section>
+    `
+  })
+})
 
 
-//inner.HTML for the room results when user enters dates 
-/* <section class='search-result-card'>
-    <div>
-      <img class='result_image' src='./images/hotel-exterior.jpg'>
-    </div>
-    <article class='result_text-wrapper'>
-      <h2>${room type}</h2>
-      <p>${room summary}</p>
-      <p>$145</p>
-      <p>per night<br>excluding taxes and fees</p>
-    </article>
-      <div><p>BOOK</p></div>
-   </section>
-  */  
