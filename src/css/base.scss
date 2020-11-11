@@ -205,19 +205,6 @@ main {
   color: $dash-board-background;
 }
 
-
-//------------------------manager dashboard-----
-
-.manager-dashboard {
-  display: flex;
-  align-self: center;
-  background-color: $dash-board-background;
-  width: 600px;
-  flex-direction: column;
-  height: 350px;
-  place-items: center;
-}
-
 .booking-record {
   margin: 10px 0 0;
   height: 70px;
@@ -325,4 +312,25 @@ main {
   padding: 16px;
   width: 10vw;
   cursor: pointer;
+}
+
+//---------------manager dashboard--------------
+
+.manager-dashboard {
+  display: flex;
+  align-self: center;
+  background-color: $dash-board-background;
+  width: 600px;
+  flex-direction: column;
+  height: 350px;
+  place-items: center;
+}
+
+.search-user-name{ 
+  background-color: $dash-board-background;
+  padding: 5px;
+  margin: 14px;
+  width: 200px;
+  height: 20px;
+  margin-bottom: 23px;
 }
