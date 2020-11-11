@@ -17,7 +17,8 @@ import {
   usersInfoPage,
   roomSearch,
   pastFutureBookings,
-  bookingContainer} from './domElements';
+  bookingContainer,
+  userBalance} from './domElements';
 import Manager from './classes/Manager';
 
  //-----------------------------populate storage-----------------------
@@ -82,6 +83,7 @@ const loginUser = (currentUser) => {
   currentUser.loggedIn = true
   displayUserDashboard()
   currentUser.getBookedHistory()
+  totalBalance(currentUser)
   populateBookings(currentUser)
 }
 
@@ -99,13 +101,17 @@ makeNewBookingBtn.addEventListener('click', (event) => {
 
 // -----------------------------inner.HTML---------------------------
 
+const totalBalance = (currentUser) => {
+  const cost = currentUser.calculateRoomCosts()
+  userBalance.innerHTML = `<p>You have currently spent $${cost}</p>`
+}
+
 const populateBookings = (currentUser) => {
   const rooms = getRooms()
   currentUser.roomsBooked
     .sort((a,b) => new Date(b.date) - new Date(a.date))
     .forEach(bookedRoom => {
-      const room = rooms.find(room => room.number === bookedRoom.roomNumber)
-      console.log(room)
+      const room = rooms.find(room => room.number === parseInt(bookedRoom.roomNumber))
       const moment = (new Date(bookedRoom.date) > Date.now()) ? 'future' : 'past';
       bookingContainer.innerHTML += 
       `
@@ -119,6 +125,7 @@ const populateBookings = (currentUser) => {
       `
     })
 }
+
 // roomTypeBtn.addEventListener('click', () => {
 //   const filteredRoomsType = user.filterRooms(roomTypeInput.type)
 //   const result = filteredRoomsType.forEach((filteredRoom) => {
