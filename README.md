@@ -36,17 +36,18 @@ Objectives:
 
 
 ### Iteration 4 - Manager Interaction
-ObjectiveS
-1. When the timer completes the alert no longer appears 
-2. When the alert dissapears a congratulatory message appears 
-3. When the user clicks 'log activity' the information is displayed in a card 
-4. Cards are displayed in past activity section
+Objectives:
+- A Manager should be able to search for any user by name and:
+  - View their name, a list of all of their bookings, and the total amount they’ve spent
+  - Add a room booking for that user
+  - Delete any upcoming room bookings for that user (they cannot delete a booking from the past)
+
 
 
 
 ### Iteration 5
 Objective
-1. When page is refreshed the past activity cards are still displayed
+- Have accessibility reach 100% thought dev tools lighthouse feature.
 
 
 
