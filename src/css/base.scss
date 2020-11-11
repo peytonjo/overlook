@@ -219,7 +219,6 @@ main {
 }
 
 .booking-record {
-  opacity: 0.9;
   margin: 10px 0 0;
   height: 70px;
   border-radius: 10px;
@@ -275,6 +274,18 @@ main {
 
 .search-button {
   height: 33px;
+  background-color: $button-background;
+  border: 0px;
+  width: 10vw;
+  cursor: pointer;
+}
+
+.search-button:hover {
+  background-color: $text-color;
+  color: $dash-board-background;
+  border: 0px;
+  width: 10vw;
+  cursor: pointer;
 }
 
 .type-results {
