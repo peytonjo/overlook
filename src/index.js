@@ -18,8 +18,14 @@ import {
   roomSearch,
   pastFutureBookings,
   bookingContainer,
-  userBalance} from './domElements';
+  userBalance,
+  roomTypeBtn,
+  roomTypeInput,
+  roomDateBtn,
+  roomDateInput,
+  resultContainer} from './domElements';
 import Manager from './classes/Manager';
+import DataManager from './classes/DataManager';
 
  //-----------------------------populate storage-----------------------
 
@@ -92,7 +98,7 @@ const loginUser = (currentUser) => {
 // -----------------------------event listeners---------------------------
 loginBtn.addEventListener('click', (event) => {
   event.preventDefault()
-  
+  console.log(roomTypeBtn)
   validateLoginInputs()
 })
 
@@ -127,21 +133,26 @@ const populateBookings = (currentUser) => {
     })
 }
 
-roomTypeBtn.addEventListener('click', () => {
-  const filteredRoomsType = user.filterRooms(roomTypeInput.type)
-  const result = filteredRoomsType.forEach((filteredRoom) => {
-    displayFilteredRooms.innerHTML = ''
-    return displayFilteredRooms.innerHTML += 
-    `<section class="search-result"> 
-      <div class="type-results">
-        "number": ${room.number},
-        "roomType": ${room.type},
-        "bidet": true
-        "bedSize": ${room.bedSize},
-        "numBeds": ${room.numBeds},
-        "costPerNight": ${room.cost}
-      </div>
-    </section>`
+roomTypeBtn.addEventListener('click', (event) => {
+  event.preventDefault()
+  resultContainer.classList.remove('hidden')
+  const rooms = getRooms()
+  const dataManager = new DataManager()
+  console.log(roomTypeInput)
+  const filteredRooms = dataManager.filterRooms(roomTypeInput.value, rooms)
+  console.log(filteredRooms)
+  filteredRooms.forEach((filteredRoom) => {
+    const hasBidet = filteredRoom.bidet ? 'offers' : 'does not have'
+    resultContainer.innerHTML += 
+    `
+      <section class="result-card"> 
+        <div class="type-results">
+          <p>One ${filteredRoom.type} with ${filteredRoom.numBeds} ${filteredRoom.bedSize} sized beds. cost-per-night: ${filteredRoom.cost}<p>
+          <p>(This room ${hasBidet} a bidet)<p>
+        </div>
+        <button class="login-btn book-btn"> Book now! </button>
+      </section>
+    `
   })
 })
 

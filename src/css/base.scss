@@ -131,7 +131,7 @@ main {
   margin-bottom: 1px;
 }
 
-.date-input {
+.search-input {
   padding: 5px;
   margin: 14px;
   width: 200px;
@@ -139,18 +139,18 @@ main {
   margin-bottom: 23px;
 }
 
-.search-result {
-  display: flex;
-  margin: 0px;
-  background-color: $dash-board-background;
-  height: 349px;
-  width: 600px;
-  align-self: center;
-  width: 100%;
-}
+// .search-result {
+//   display: flex;
+//   margin: 0px;
+//   background-color: $dash-board-background;
+//   height: 349px;
+//   width: 600px;
+//   align-self: center;
+//   width: 100%;
+// }
 
 
-.input-search {
+.input-container {
   height: 28px;
   margin-top: 14px;
   display: table-row-group;
@@ -161,6 +161,8 @@ main {
 }
 
 .room-search {
+  display: flex;
+  flex-direction: column;
   margin-left: 61px;
   margin-right: 20px;
   margin-top: 100px;
@@ -228,8 +230,8 @@ main {
   width: 600px;
   margin: 40px;
   margin-top: 100px;
-  padding: 20px;
   background-color: #fff;
+  padding: 10px 20px 10px 20px;
   opacity: 0.9;
 }
 
@@ -247,6 +249,49 @@ main {
 .booking-record h2 {
   margin-left: 10px;
 }
+
+.search-results {
+  opacity: 0.9;
+  margin: 10px 0 0;
+  height: fit-content;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  place-content: space-between;    
+  justify-content: center;
+  align-items: center;
+}
+
+.result-container {
+  width: 600px;
+  margin: 10px 5px;
+  background-color: #fff;
+  contain: content;
+  padding: 10px 20px 10px 20px;
+}
+
+.result-card {
+  margin: 10px 0 0;
+  height: 70px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  background-color: $past-bg-color;
+  color: $dash-board-background;
+}
+
+.type-results {
+  margin: 10px;
+}
+
+.book-btn {
+  margin: 10px;
+}
+
+
 
 .room-cost {
   background-color: #8efa9d;

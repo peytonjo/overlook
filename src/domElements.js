@@ -14,6 +14,10 @@ export const userBalance = document.querySelector('.user-balance')
 export const bookingContainer = document.querySelector('.booking-container')
 export const roomSearch = document.querySelector('.room-search')
 export const makeNewBookingBtn = document.querySelector('.book-new-btn')
-export const roomTypeBtn = document.getElementById('room-type-search-btn');
-export const roomDateBtn = document.getElementById('date-search-btn');
+export const roomTypeBtn = document.querySelector('#room-type-search-btn');
+export const roomTypeInput = document.querySelector('.room-type-input');
+export const dateInput = document.querySelector('.date-input');
+export const roomDateBtn = document.querySelector('#date-search-btn');
+export const resultContainer = document.querySelector('.result-container')
+
 

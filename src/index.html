@@ -30,23 +30,21 @@
             <section class="user-room-search">
               <form class="calendar">
                 <h2>Search for room by date</h2>
-                <div class="input-search">
-                  <input class="date-input" placeholder="YYYY/MM/DD">
-                  <button class="search-button" id="#date-search-btn">Search</button>
-                </div> 
+                <section class="input-container">
+                  <input class="search-input date-input" placeholder="YYYY/MM/DD">
+                  <button class="search-button" id="date-search-btn">Search</button>
+                </section> 
               </form>
               <form class="calendar">
                 <h2>Search room by type</h2> 
-                <section class="input-search">
-                  <input class="date-input" placeholder="suite, single, etc.">
-                  <button class="search-button" id="#room-type-search-btn">Search</button>
+                <section class="input-container">
+                  <input class="search-input room-type-input" placeholder="suite, single, etc.">
+                  <button class="search-button" id="room-type-search-btn">Search</button>
                 </section>
               </form>
             </section>
-            <section class="search-result">
-              <div class="result-card">
-                <img>
-              </div>
+            <section class="search-results">
+              <div class="result-container hidden"></div>
             </section>
           </section>
         </article>
