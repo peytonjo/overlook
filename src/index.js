@@ -25,7 +25,7 @@ import {
   dateInput,
   resultContainer,
   loginErrorMsg,
-  bookBtn} from './domElements';
+  backBtn} from './domElements';
 import Manager from './classes/Manager';
 import DataManager from './classes/DataManager';
 
@@ -56,6 +56,7 @@ const displayUserDashboard = () => {
   usersInfoPage.classList.remove('hidden')
   pastFutureBookings.classList.remove('hidden')
   loginForm.classList.add('hidden')
+  roomSearch.classList.add('hidden')
 }
 
 const makeNewBookingView = () => {
@@ -101,7 +102,7 @@ const loginUser = (currentUser) => {
 // -----------------------------event listeners---------------------------
 loginBtn.addEventListener('click', (event) => {
   event.preventDefault()
-  console.log(roomTypeBtn)
+  
   validateLoginInputs()
 })
 
@@ -110,30 +111,26 @@ makeNewBookingBtn.addEventListener('click', (event) => {
 })
 
 resultContainer.addEventListener('click', (event) => {
-
     sendBookingData(event)
 
-    // disable that book btn
-    // add a class to the room to show its booked
-    // add a back button to take to dashboard
+    if (event && event.target.id === 'book-room-btn') {
+      event.target.disabled = true
+    }
 })
 
-// 
+backBtn.addEventListener('click', (event) => {
+  displayUserDashboard()
+})
 // -----------------------------post request---------------------------
 
 const sendBookingData = (event) => {
-  // Catch event bubbling for the click of the book room button
-  if(event && event.target.id === "book-room-btn") {
-    // pull user id from local storage
+  if(event && event.target.id === 'book-room-btn') {
     const userID = JSON.parse(localStorage.getItem('currentUserID'));
-    // get the room number from the elements data-id attribute
     const roomNumber = event.target.dataset.id;
-    // formate date
     const date = `${new Date().getUTCFullYear()}/${new Date().getUTCMonth()}/${new Date().getUTCDate()}`;
     const url = "https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings";
-    // build the booking data for the post request
     const bookingData = {"userID": userID, "roomNumber": roomNumber, "date": date};
-    // make the post request
+
     postData(url, bookingData).then(result => {
       if (result) {
         alert("Room succesfully booked!")
@@ -154,7 +151,15 @@ const populateBookings = (currentUser) => {
     .sort((a,b) => new Date(b.date) - new Date(a.date))
     .forEach(bookedRoom => {
       const room = rooms.find(room => room.number === parseInt(bookedRoom.roomNumber))
-      const moment = (new Date(bookedRoom.date) > Date.now()) ? 'future' : 'past';
+      let moment;
+      if (new Date(bookedRoom.date) > Date.now()){
+        moment = 'future';
+      } else if (new Date(bookedRoom.date) < Date.now()){
+        moment = 'past';
+      } else {
+        moment = 'present';
+      }
+
       bookingContainer.innerHTML += 
       `
       <div class="booking-record ${moment}"> 
