@@ -38,24 +38,6 @@ export default class User {
 
     return this.roomsBooked
   }
-
-  findAvailableRooms(date, rooms, bookings) {
-    const availableBookings = bookings.filter(booking => {
-      return booking.date !== date
-    })
-    
-    const availableRooms = availableBookings.map(booking => {
-      const result = rooms.find(room => room.number === booking.roomNumber)
-    
-      return result
-    })
-
-    return availableRooms
-  }
-
-  filterRooms(value, rooms) {
-    return rooms.filter(room => room.type === value)
-  }
 }
 
 
