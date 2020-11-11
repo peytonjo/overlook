@@ -1,12 +1,16 @@
 
 $primary-background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
 $dash-board-background: #fff;
-$shadow: 1px 13px 15px 3px rgba(125,125,125,0.81);
 $button-hover: #ffccff;
 $button-background: #c3c4c7;
 $text-color: black;
 $future-bg-color: #bdc1c9;
+$present-bg-color: #e6be83;
 $past-bg-color: #707173;
+$cost-color: #8efa9d;
+$login-error-bg: #e58f8f;
+$login-error-outline: #990000;
+
 
 
 
@@ -16,7 +20,7 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
-  background-color: #464646;
+  background-color: $past-bg-color;
 }
 
 main {
@@ -51,11 +55,8 @@ main {
 
 .login-btn {
   background-color: $button-background;
-  background-color: #c3c4c7;
   height: 46px;
   border: 0px;
-  border-radius: 1px;
-  padding: 16px;
   cursor: pointer;
   width: 10vw;
 }
@@ -65,8 +66,6 @@ main {
   color: $dash-board-background;
   height: 46px;
   border: 0px;
-  border-radius: 1px;
-  padding: 16px;
 }
 
 .username-login-input {
@@ -92,8 +91,8 @@ main {
   display: grid;
   justify-items: center;
   align-items: center;
-  background-color: #e58f8f;
-  border: solid #990000 5px;
+  background-color: $login-error-bg;
+  border: solid $login-error-outline 5px;
 }
 
 .login-error-msg {
@@ -139,27 +138,6 @@ main {
   margin-bottom: 23px;
 }
 
-// .search-result {
-//   display: flex;
-//   margin: 0px;
-//   background-color: $dash-board-background;
-//   height: 349px;
-//   width: 600px;
-//   align-self: center;
-//   width: 100%;
-// }
-
-
-.input-container {
-  height: 28px;
-  margin-top: 14px;
-  display: table-row-group;
-}
-
-.search-button {
-  height: 33px;
-}
-
 .room-search {
   display: flex;
   flex-direction: column;
@@ -189,7 +167,6 @@ main {
 
 .book-new-btn {
   background-color: $button-background;
-  background-color: #c3c4c7;
   height: 46px;
   border: 0px;
   border-radius: 1px;
@@ -205,14 +182,29 @@ main {
   padding: 16px;
 }
 
+.past-future-bookings {
+  width: 600px;
+  margin: 40px;
+  margin-top: 100px;
+  background-color: $dash-board-background;
+  padding: 10px 20px 10px 20px;
+  opacity: 0.9;
+}
+
+
 .future {
   background-color: $future-bg-color;
 }
 
+.present {
+  background-color: $present-bg-color
+}
+
 .past {
   background-color: $past-bg-color;
-  color: $dash-board-background
+  color: $dash-board-background;
 }
+
 
 //------------------------manager dashboard-----
 
@@ -226,15 +218,6 @@ main {
   place-items: center;
 }
 
-.past-future-bookings {
-  width: 600px;
-  margin: 40px;
-  margin-top: 100px;
-  background-color: #fff;
-  padding: 10px 20px 10px 20px;
-  opacity: 0.9;
-}
-
 .booking-record {
   opacity: 0.9;
   margin: 10px 0 0;
@@ -244,6 +227,7 @@ main {
   flex-direction: row;
   place-content: space-between;
   align-items: center;
+  font-weight: bolder;
 }
 
 .booking-record h2 {
@@ -253,10 +237,10 @@ main {
 .search-results {
   opacity: 0.9;
   margin: 10px 0 0;
-  height: fit-content;
   border-radius: 10px;
+  height: fit-content;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   place-content: space-between;    
   justify-content: center;
   align-items: center;
@@ -265,7 +249,7 @@ main {
 .result-container {
   width: 600px;
   margin: 10px 5px;
-  background-color: #fff;
+  background-color: $dash-board-background;
   contain: content;
   padding: 10px 20px 10px 20px;
 }
@@ -283,6 +267,16 @@ main {
   color: $dash-board-background;
 }
 
+.input-container {
+  height: 28px;
+  margin-top: 14px;
+  display: table-row-group;
+}
+
+.search-button {
+  height: 33px;
+}
+
 .type-results {
   margin: 10px;
 }
@@ -291,10 +285,8 @@ main {
   margin: 10px;
 }
 
-
-
 .room-cost {
-  background-color: #8efa9d;
+  background-color: $cost-color;
   margin: 10px;
   width: 54px;
   height: 50px;
@@ -305,4 +297,21 @@ main {
 
 .room-type {
   margin-left: 10px;
+}
+
+.back-btn {
+  background-color: $button-background;
+  border: 0px;
+  padding: 16px;
+  width: 10vw;
+  cursor: pointer;
+}
+
+.back-btn:hover {
+  background-color: $text-color;
+  color: $dash-board-background;
+  border: 0px;
+  padding: 16px;
+  width: 10vw;
+  cursor: pointer;
 }
