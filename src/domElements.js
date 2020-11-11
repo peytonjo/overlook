@@ -19,5 +19,6 @@ export const roomTypeInput = document.querySelector('.room-type-input');
 export const dateInput = document.querySelector('.date-input');
 export const roomDateBtn = document.querySelector('#date-search-btn');
 export const resultContainer = document.querySelector('.result-container')
+export const bookBtn = document.querySelector('.book-btn')
 
 

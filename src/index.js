@@ -4,7 +4,7 @@
 // import './images/turing-logo.png'
 
 //import './images/hotel-room.webp'
-import { getUsers, getRooms, getBookings, getData } from './apiCalls';
+import { getUsers, getRooms, getBookings, getData, postData } from './apiCalls';
 import './css/base.scss';
 import { 
   loginBtn, 
@@ -24,7 +24,8 @@ import {
   roomDateBtn,
   dateInput,
   resultContainer,
-  loginErrorMsg} from './domElements';
+  loginErrorMsg,
+  bookBtn} from './domElements';
 import Manager from './classes/Manager';
 import DataManager from './classes/DataManager';
 
@@ -89,6 +90,7 @@ const findUser = (id) => {
 
 const loginUser = (currentUser) => {
   currentUser.loggedIn = true
+  localStorage.setItem('currentUserID', JSON.stringify(currentUser.id))
   displayUserDashboard()
   currentUser.getBookedHistory()
   totalBalance(currentUser)
@@ -107,6 +109,38 @@ makeNewBookingBtn.addEventListener('click', (event) => {
   makeNewBookingView()
 })
 
+resultContainer.addEventListener('click', (event) => {
+
+    sendBookingData(event)
+
+    // disable that book btn
+    // add a class to the room to show its booked
+    // add a back button to take to dashboard
+})
+
+// 
+// -----------------------------post request---------------------------
+
+const sendBookingData = (event) => {
+  // Catch event bubbling for the click of the book room button
+  if(event && event.target.id === "book-room-btn") {
+    // pull user id from local storage
+    const userID = JSON.parse(localStorage.getItem('currentUserID'));
+    // get the room number from the elements data-id attribute
+    const roomNumber = event.target.dataset.id;
+    // formate date
+    const date = `${new Date().getUTCFullYear()}/${new Date().getUTCMonth()}/${new Date().getUTCDate()}`;
+    const url = "https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings";
+    // build the booking data for the post request
+    const bookingData = {"userID": userID, "roomNumber": roomNumber, "date": date};
+    // make the post request
+    postData(url, bookingData).then(result => {
+      if (result) {
+        alert("Room succesfully booked!")
+      }
+    }).catch((error) => alert(error))
+  }
+}
 // -----------------------------inner.HTML---------------------------
 
 const totalBalance = (currentUser) => {
@@ -149,7 +183,7 @@ roomTypeBtn.addEventListener('click', (event) => {
           <p>One ${filteredRoom.type} with ${filteredRoom.numBeds} ${filteredRoom.bedSize} sized beds. cost-per-night: ${filteredRoom.cost}<p>
           <p>(This room ${hasBidet} a bidet)<p>
         </div>
-        <button class="login-btn book-btn"> Book now! </button>
+        <button  id="book-room-btn" data-id=${filteredRoom.number} class="login-btn book-btn"> Book now! </button>
       </section>
     `
   })
