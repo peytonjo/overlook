@@ -1,3 +1,7 @@
+import Booking from "./classes/Booking";
+import Room from "./classes/Room";
+import User from "./classes/User";
+
 export const getData = (url) => {
   try {
     const data = fetch(url)
@@ -6,8 +10,7 @@ export const getData = (url) => {
     }).then(data => {
       return data
     });
- 
-
+    
     return data;
   } catch(error) {
     throw new Error('Failed to fetch: ' + error)
@@ -35,4 +38,22 @@ export const postData = async (url, data) => {
   } catch(error) {
     throw new Error('Failed to fetch: ' + error)
   }
+}
+
+export const getUsers = () => {
+  const usersData = JSON.parse(localStorage.getItem('users'))
+  
+  return usersData.users.map((data) => new User(data))
+}
+
+export const getRooms = () => {
+  const roomsData = JSON.parse(localStorage.getItem('rooms'))
+
+  return roomsData.rooms.map(room => new Room(room))
+}
+
+export const getBookings = () => {
+  const bookingsData = JSON.parse(localStorage.getItem('bookings'))
+
+  return bookingsData.bookings.map(booking => new Booking(booking))
 }

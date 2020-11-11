@@ -1,20 +1,308 @@
+
 $primary-background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+$dash-board-background: #fff;
+$shadow: 1px 13px 15px 3px rgba(125,125,125,0.81);
+$button-hover: #ffccff;
+$button-background: #c3c4c7;
+$text-color: black;
+$future-bg-color: #bdc1c9;
+$past-bg-color: #707173;
+
 
 
 body {
-  background: $primary-background;
+  background-image: url('../images/bg-image.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-color: #464646;
 }
 
-.login-panel {
+main {
   display: flex;
-  text-align: -webkit-center;
+  justify-content: center;
+}
+
+.full-panel {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  margin: 10px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+//---------login--------------
+
+.login-form-panel {
+  display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: $dash-board-background;
+  margin-top: 183px;
+  padding-left: 130px;
+  padding-right: 130px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
-.login-input {
+.login-btn {
+  background-color: $button-background;
+  background-color: #c3c4c7;
+  height: 46px;
+  border: 0px;
+  border-radius: 1px;
+  padding: 16px;
+  cursor: pointer;
+  width: 10vw;
+}
+
+.login-btn:hover {
+  background-color: $text-color;
+  color: $dash-board-background;
+  height: 46px;
+  border: 0px;
+  border-radius: 1px;
+  padding: 16px;
+}
+
+.username-login-input {
+  background-color: $dash-board-background;
   padding: 5px;
   margin: 14px;
   width: 200px;
+  height: 20px;
   margin-bottom: 23px;
+}
+
+.password-login-input {
+  padding: 5px;
+  margin: 14px;
+  width: 200px;
+  height: 20px;
+  margin-bottom: 23px;
+}
+
+.login-error-msg-box {
+  height: 56px;
+  width: 207px;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  background-color: #e58f8f;
+  border: solid #990000 5px;
+}
+
+.login-error-msg {
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    padding: 5px;
+    font-size: 12px;
+    font-weight: bold;
+    color: $text-color;
+}
+
+//--------------user dashboard-----------
+
+
+@mixin user-dashboard {
+  display: flex;
+  place-content: space-around;
+}
+
+.dashboard {
+  @include user-dashboard;
+  align-content: center;
+  width: 100px;
+}
+
+.calendar {
+  background-color: $dash-board-background;
+  text-align: -webkit-center;
+  width: 50vw;
+  font-family: sans-serif;
+}
+
+.calendar h2 {
+  margin-bottom: 1px;
+}
+
+.search-input {
+  padding: 5px;
+  margin: 14px;
+  width: 200px;
+  height: 20px;
+  margin-bottom: 23px;
+}
+
+// .search-result {
+//   display: flex;
+//   margin: 0px;
+//   background-color: $dash-board-background;
+//   height: 349px;
+//   width: 600px;
+//   align-self: center;
+//   width: 100%;
+// }
+
+
+.input-container {
+  height: 28px;
+  margin-top: 14px;
+  display: table-row-group;
+}
+
+.search-button {
+  height: 33px;
+}
+
+.room-search {
+  display: flex;
+  flex-direction: column;
+  margin-left: 61px;
+  margin-right: 20px;
+  margin-top: 100px;
+}
+
+.user-room-search {
+  background-color: $dash-board-background;
+  display: flex;
+  justify-content: space-around;
+}
+
+.user-room-info {
+  background-color: $dash-board-background;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: -webkit-center;
+  width: 600px;
+  margin: 40px;
+  margin-top: 100px;
+  padding: 20px;
+  opacity: 0.9;
+}
+
+.book-new-btn {
+  background-color: $button-background;
+  background-color: #c3c4c7;
+  height: 46px;
+  border: 0px;
+  border-radius: 1px;
+  padding: 16px;
+}
+
+.book-new-btn:hover {
+  background-color: $text-color;
+  color: $dash-board-background;
+  height: 46px;
+  border: 0px;
+  border-radius: 1px;
+  padding: 16px;
+}
+
+.future {
+  background-color: $future-bg-color;
+}
+
+.past {
+  background-color: $past-bg-color;
+  color: $dash-board-background
+}
+
+//------------------------manager dashboard-----
+
+.manager-dashboard {
+  display: flex;
+  align-self: center;
+  background-color: $dash-board-background;
+  width: 600px;
+  flex-direction: column;
+  height: 350px;
+  place-items: center;
+}
+
+.past-future-bookings {
+  width: 600px;
+  margin: 40px;
+  margin-top: 100px;
+  background-color: #fff;
+  padding: 10px 20px 10px 20px;
+  opacity: 0.9;
+}
+
+.booking-record {
+  opacity: 0.9;
+  margin: 10px 0 0;
+  height: 70px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  place-content: space-between;
+  align-items: center;
+}
+
+.booking-record h2 {
+  margin-left: 10px;
+}
+
+.search-results {
+  opacity: 0.9;
+  margin: 10px 0 0;
+  height: fit-content;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  place-content: space-between;    
+  justify-content: center;
+  align-items: center;
+}
+
+.result-container {
+  width: 600px;
+  margin: 10px 5px;
+  background-color: #fff;
+  contain: content;
+  padding: 10px 20px 10px 20px;
+}
+
+.result-card {
+  margin: 10px 0 0;
+  height: 70px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  background-color: $past-bg-color;
+  color: $dash-board-background;
+}
+
+.type-results {
+  margin: 10px;
+}
+
+.book-btn {
+  margin: 10px;
+}
+
+
+
+.room-cost {
+  background-color: #8efa9d;
+  margin: 10px;
+  width: 54px;
+  height: 50px;
+  border-radius: 46px;
+  text-align: center;
+  color: $text-color !important;
+}
+
+.room-type {
+  margin-left: 10px;
 }
