@@ -33,6 +33,7 @@ import DataManager from './classes/DataManager';
 
 
 const populateStorage = () => {
+  localStorage.clear
   const usersURL = 'https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users';
   const roomsURL = 'https://fe-apps.herokuapp.com/api/v1/overlook/1904/rooms/rooms';
   const bookingsURL = 'https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings';
@@ -126,17 +127,30 @@ backBtn.addEventListener('click', (event) => {
 const sendBookingData = (event) => {
   if(event && event.target.id === 'book-room-btn') {
     const userID = JSON.parse(localStorage.getItem('currentUserID'));
-    const roomNumber = event.target.dataset.id;
-    const date = `${new Date().getUTCFullYear()}/${new Date().getUTCMonth()}/${new Date().getUTCDate()}`;
+    const user = findUser(userID)
+    const roomNumber = event.target.dataset.room;
+    const todaysDate = `${new Date().getUTCFullYear()}/${new Date().getUTCMonth()+1}/${new Date().getUTCDate()}`;
+    const date = event.target.dataset.date ? event.target.dataset.date : todaysDate;
     const url = "https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings";
     const bookingData = {"userID": userID, "roomNumber": roomNumber, "date": date};
-
+    console.log(bookingData)
     postData(url, bookingData).then(result => {
       if (result) {
         alert("Room succesfully booked!")
+        refreshDashboard(user)
       }
     }).catch((error) => alert(error))
   }
+}
+
+const refreshDashboard = (user) => {
+  const bookingsURL = 'https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings';
+  getData(bookingsURL)
+    .then(data => localStorage.setItem('bookings', JSON.stringify(data)))
+    .then((data) => {
+      user.getBookedHistory()
+      populateBookings(user)
+    })
 }
 // -----------------------------inner.HTML---------------------------
 
@@ -146,7 +160,11 @@ const totalBalance = (currentUser) => {
 }
 
 const populateBookings = (currentUser) => {
+  console.log('populating bookings')
   const rooms = getRooms()
+
+  bookingContainer.innerHTML = ''
+
   currentUser.roomsBooked
     .sort((a,b) => new Date(b.date) - new Date(a.date))
     .forEach(bookedRoom => {
@@ -175,6 +193,7 @@ const populateBookings = (currentUser) => {
 
 roomTypeBtn.addEventListener('click', (event) => {
   event.preventDefault()
+  resultContainer.innerHTML = ''
   resultContainer.classList.remove('hidden')
   const rooms = getRooms()
   const dataManager = new DataManager()
@@ -188,7 +207,7 @@ roomTypeBtn.addEventListener('click', (event) => {
           <p>One ${filteredRoom.type} with ${filteredRoom.numBeds} ${filteredRoom.bedSize} sized beds. cost-per-night: ${filteredRoom.cost}<p>
           <p>(This room ${hasBidet} a bidet)<p>
         </div>
-        <button  id="book-room-btn" data-id=${filteredRoom.number} class="login-btn book-btn"> Book now! </button>
+        <button  id="book-room-btn" data-room="${filteredRoom.number}" class="login-btn book-btn"> Book now! </button>
       </section>
     `
   })
@@ -196,6 +215,7 @@ roomTypeBtn.addEventListener('click', (event) => {
 
 roomDateBtn.addEventListener('click', (event) => {
   event.preventDefault()
+  resultContainer.innerHTML = ''
   resultContainer.classList.remove('hidden')
   const rooms = getRooms()
   const bookings = getBookings()
@@ -211,7 +231,7 @@ roomDateBtn.addEventListener('click', (event) => {
           <p>One ${filteredRoom.type} with ${filteredRoom.numBeds} ${filteredRoom.bedSize} sized beds. cost-per-night: ${filteredRoom.cost}<p>
           <p>(This room ${hasBidet} a bidet)<p>
         </div>
-        <button class="login-btn book-btn"> Book now! </button>
+        <button  id="book-room-btn" data-room="${filteredRoom.number}" data-date="${dateInput.value}" class="login-btn book-btn"> Book now! </button>
       </section>
     `
   })
